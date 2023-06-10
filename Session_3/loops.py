@@ -86,11 +86,60 @@ letters = ["a", "b", "c"]
 # for number in range (1,11):
 #     print (f"{given} x {number} = {int(given)*number}")
 
-#Ask the user for an integer. Using a for loop, add up every number from 0 up to thatinteger, and print the result.
+#Q2 Ask the user for an integer. Using a for loop, add up every number from 0 up to thatinteger, and print the result.
 # given_number = int(input("Give me a number"))
 # sum = 0
 # for given in range (0,given_number+1):
 #     sum = sum + given
 # print(sum)
 
-#
+#Q3 Save a list of numbers to a variable in your script, and then use a for loop to print thesum of all the numbers in the list
+# my_numbers = [12,56,32,2,7,98]
+# count = 0
+# for number in my_numbers:
+#     count = count + number
+# print(count)
+
+#Q4 improve mambo number 5 
+# lyrics = [
+#     ["Monica", "in my life"],
+#     ["Erica", "by my side"],
+#     ["Rita's", "all I need"],
+#     ["Tina's", "what I see"],
+#     ["Sandra", "in the sun"],
+#     ["Mary", "having fun"],
+#     ["Jessica", "here I am"]
+#     ]
+
+# for combo in lyrics:
+#     print(f"A little bit of {combo[0]} {combo[1]}")
+
+#Below is a list of grocery items and their prices per unit:
+# groceries = [
+#         ["Baby Spinach", 2.78],
+#         ["Hot Chocolate", 3.70],
+#         ["BBQ Shapes", 9.00],
+#         ["Bread", 2.10],
+#         ["Carrots", 0.56],
+#         ["Oranges", 3.08]
+#         ]
+
+# total = 0
+# for item in groceries:
+#     total = total + ((int(input(f"Please enter the quantity for {item[0]}")) * item[1]))
+# print(f"Your total is ${total}")
+
+#2Let's improve the guessing game you wrote in Q3 of the while loop exercises. Updatethe code so that when the game ends, the program asks the player if they would liketo play again. If they input "no", the game ends, but with any other input the gamebegins again.Right now, your game will be a little busted, because the number the user has to guesswill be the same every time. If you feel like challenging yourself even further, have agroceries = [    ["Baby Spinach", 2.78],    ["Hot Chocolate", 3.70],    ["BBQ Shapes", 9.00],    ["Bread", 2.10],    ["Carrots", 0.56],    ["Oranges", 3.08]]
+#search around online - does Python give us a way to generate random numbers? Thismight involve using a new technique or two, so make sure you reach out to thementors if you get stuck
+
+number = 84
+print("Guess the random number!")
+guess = int(input("Make a guess: "))
+while number != guess:
+    if guess < number:
+        print("Too low..")
+    else: 
+        print("Too high...")
+    guess = int(input("Make a guess: "))
+print("You got it right!")
+repeat = input("Do you want to play again?")
