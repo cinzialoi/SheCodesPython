@@ -5,9 +5,9 @@
 
 
 #Write a program that takes two numbers from the user,and outputs the equation representing the multiplication ofthe two numbers
-# first_number = input("Give me the first number")
-# second_number = input("Give me the second number")
-# print(f"If you multiply those numbers you get {int(first_number)*int(second_number)}")
+first_number = input("Give me the first number")
+second_number = input("Give me the second number")
+print(f"If you multiply {first_number} with {second_number} you get {int(first_number)*int(second_number)}")
 
 #Write a program that takes a distance in kilometers from the user, 
 # and output the distance in meters and centimeters

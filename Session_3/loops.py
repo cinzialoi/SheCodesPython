@@ -129,17 +129,21 @@ letters = ["a", "b", "c"]
 #     total = total + ((int(input(f"Please enter the quantity for {item[0]}")) * item[1]))
 # print(f"Your total is ${total}")
 
-#2Let's improve the guessing game you wrote in Q3 of the while loop exercises. Updatethe code so that when the game ends, the program asks the player if they would liketo play again. If they input "no", the game ends, but with any other input the gamebegins again.Right now, your game will be a little busted, because the number the user has to guesswill be the same every time. If you feel like challenging yourself even further, have agroceries = [    ["Baby Spinach", 2.78],    ["Hot Chocolate", 3.70],    ["BBQ Shapes", 9.00],    ["Bread", 2.10],    ["Carrots", 0.56],    ["Oranges", 3.08]]
+#2Let's improve the guessing game you wrote in Q3 of the while loop exercises. Update 
+# the code so that when the game ends, the program asks the player if they would liketo play again. 
+# If they input "no", the game ends, but with any other input the gamebegins again.Right now, your game will be a little busted, because the number the user has to guesswill be the same every time. If you feel like challenging yourself even further, have agroceries = [    ["Baby Spinach", 2.78],    ["Hot Chocolate", 3.70],    ["BBQ Shapes", 9.00],    ["Bread", 2.10],    ["Carrots", 0.56],    ["Oranges", 3.08]]
 #search around online - does Python give us a way to generate random numbers? Thismight involve using a new technique or two, so make sure you reach out to thementors if you get stuck
 
 number = 84
+repeat = "yes"
 print("Guess the random number!")
-guess = int(input("Make a guess: "))
-while number != guess:
-    if guess < number:
-        print("Too low..")
-    else: 
-        print("Too high...")
+while repeat == "yes":
     guess = int(input("Make a guess: "))
-print("You got it right!")
-repeat = input("Do you want to play again?")
+    while number != guess:
+        if guess < number:
+            print("Too low..")
+        else: 
+            print("Too high...")
+        guess = int(input("Make a guess: "))
+    print("You got it right!")
+    repeat = input("Do you want to play again? Type 'yes' or 'no'")
