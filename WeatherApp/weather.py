@@ -65,9 +65,14 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
+    list_of_lines = []
     with open(csv_file) as my_file: 
-        creader=csv.reader(my_file,delimiter=',')
-        list_of_lines=list(creader)
+        read_file =csv.reader(my_file)
+        for line in read_file:
+            if line == []:
+                pass
+            else:
+                list_of_lines.append(line)
     return list_of_lines
 
 
