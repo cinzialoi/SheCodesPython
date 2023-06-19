@@ -68,11 +68,11 @@ def load_data_from_csv(csv_file):
     list_of_lines = []
     with open(csv_file) as my_file: 
         read_file =csv.reader(my_file)
+        next(read_file, None)
         for line in read_file:
-            if line == []:
-                pass
-            else:
-                list_of_lines.append(line)
+            if line:
+                integers = [int(value) if len(value) < 4 else value for value in line]
+                list_of_lines.append(integers)
     return list_of_lines
 
 
@@ -129,8 +129,26 @@ def generate_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
+    iso_date = []
+    min_temps = []
+    max_temps = []
 
+    for line in weather_data:
+        iso_date.append(line[0])
+        min_temps.append(line[1])
+        max_temps.append(line[2])
+
+    min_temp, min_index = find_min(min_temps)
+    min_temp_converted = convert_f_to_c(min_temp)
+
+    max_temp, max_index = find_max(max_temps)
+    max_temp_converted = convert_f_to_c(max_temp)
+
+    min_average = calculate_mean(min_temps)
+    max_average = calculate_mean(max_temps)
+
+    summary = (f"{len(weather_data)} Day Overview\n  The lowest temperature will be {format_temperature(min_temp_converted)}, and will occur on {convert_date(iso_date[min_index])}.\n  The highest temperature will be {format_temperature(max_temp_converted)}, and will occur on {convert_date(iso_date[max_index])}.\n  The average low this week is {format_temperature(convert_f_to_c(min_average))}.\n  The average high this week is {format_temperature(convert_f_to_c(max_average))}.\n")
+    return summary
 
 def generate_daily_summary(weather_data):
     """Outputs a daily summary for the given weather data.
