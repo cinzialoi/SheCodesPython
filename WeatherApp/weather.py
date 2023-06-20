@@ -91,10 +91,12 @@ def find_min(weather_data):
     min_value = float(weather_data[0])
     min_index = 0
 
-    for temp in weather_data:
+    for index, temp in enumerate(weather_data):
         if float(temp) <= min_value:
             min_value = float(temp)
-            min_index = len(weather_data) -1 - weather_data[::-1].index(temp)
+            min_index = index
+
+            #workaround pre-enumerate --> min_index = len(weather_data) -1 - weather_data[::-1].index(temp)
 
     return (min_value, min_index)
 
@@ -113,10 +115,11 @@ def find_max(weather_data):
     max_value = float(weather_data[0])
     max_index = 0
 
-    for temp in weather_data:
+    for index, temp in enumerate(weather_data):
         if float(temp) >= max_value:
             max_value = float(temp)
-            max_index = len(weather_data) -1 - weather_data[::-1].index(temp)
+            max_index = index
+            #workaround pre-enumerate --> max_index = len(weather_data) -1 - weather_data[::-1].index(temp)
 
     return (max_value, max_index)
 
@@ -139,15 +142,12 @@ def generate_summary(weather_data):
         max_temps.append(line[2])
 
     min_temp, min_index = find_min(min_temps)
-    min_temp_converted = convert_f_to_c(min_temp)
-
     max_temp, max_index = find_max(max_temps)
-    max_temp_converted = convert_f_to_c(max_temp)
 
     min_average = calculate_mean(min_temps)
     max_average = calculate_mean(max_temps)
 
-    summary = (f"{len(weather_data)} Day Overview\n  The lowest temperature will be {format_temperature(min_temp_converted)}, and will occur on {convert_date(iso_date[min_index])}.\n  The highest temperature will be {format_temperature(max_temp_converted)}, and will occur on {convert_date(iso_date[max_index])}.\n  The average low this week is {format_temperature(convert_f_to_c(min_average))}.\n  The average high this week is {format_temperature(convert_f_to_c(max_average))}.\n")
+    summary = (f"{len(weather_data)} Day Overview\n  The lowest temperature will be {format_temperature(convert_f_to_c(min_temp))}, and will occur on {convert_date(iso_date[min_index])}.\n  The highest temperature will be {format_temperature(convert_f_to_c(max_temp))}, and will occur on {convert_date(iso_date[max_index])}.\n  The average low this week is {format_temperature(convert_f_to_c(min_average))}.\n  The average high this week is {format_temperature(convert_f_to_c(max_average))}.\n")
     return summary
 
 def generate_daily_summary(weather_data):
@@ -158,4 +158,8 @@ def generate_daily_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
+
+    daily_summary = ""
+    for line in weather_data:
+        daily_summary = daily_summary +(f"---- {convert_date(line[0])} ----\n  Minimum Temperature: {format_temperature(convert_f_to_c(line[1]))}\n  Maximum Temperature: {format_temperature(convert_f_to_c(line[2]))}\n\n")
+    return daily_summary
